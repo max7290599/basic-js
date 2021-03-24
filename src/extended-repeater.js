@@ -11,7 +11,7 @@ module.exports = function repeater(str, options) {
   let separator = options.separator;
   if (!separator) separator = '+';
 
-  let addition = options.addition === null ? 'null' : options.addition;
+  let addition = options.addition === null ? 'null' :  (typeof options.addition === 'boolean') ?  options.addition.toString() : options.addition;
   if (!addition) addition = '';
 
   let additionRepeatTimes = options.additionRepeatTimes;
@@ -21,9 +21,9 @@ module.exports = function repeater(str, options) {
   if (!additionSeparator) additionSeparator = '|'
 
   for (let i = 0; i < repeatTimes; i++) {
-    for (let j = 0; j < additionRepeatTimes; i++) {
+    for (let j = 0; j < additionRepeatTimes; j++) {
       str += addition;
-      if (j < additionRepeatTimes - 1) str += additionRepeatTimes;
+      if (j < additionRepeatTimes - 1) str += additionSeparator;
 
     }
     if (i < repeatTimes - 1) str += separator + original;
